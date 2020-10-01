@@ -1,6 +1,6 @@
 {
-  "name": "compoenent",
-  "svelte": "src/Component.svelte",
+  "name": "svelte-dev-tools",
+  "svelte": "src/DevTools.svelte",
   "module": "index.mjs",
   "version": "0.0.1",
   "description": "component",
@@ -13,6 +13,7 @@
     "@rollup/plugin-commonjs": "^13",
     "@rollup/plugin-html": "^0.2.0",
     "@rollup/plugin-node-resolve": "^8",
+    "@rollup/plugin-replace": "^2.3.3",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/svelte": "^3.0.0",
     "babel-jest": "^26.1.0",
@@ -39,8 +40,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest",

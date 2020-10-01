@@ -13,7 +13,7 @@ const name = pkg.name
 .replace(/-\w/g, m => m[1].toUpperCase());
 
 export default {
-  input: 'src/Fingerprint.svelte',
+  input: 'src/DevTools.svelte',
   output: [
     { file: pkg.module, 'format': 'es'},
     { file: pkg.main, 'format': 'umd', name}
