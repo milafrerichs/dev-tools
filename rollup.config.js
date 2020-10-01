@@ -23,7 +23,7 @@ export default {
     commonjs(),
     resolve(),
     html(),
-    production && terser()
+    //production && terser()
   ],
   watch: {
     clearScreen: false

@@ -2,7 +2,7 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import html from 'rollup-plugin-html';
 import commonjs from 'rollup-plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
+import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
@@ -16,6 +16,14 @@ export default {
     file: './example/public/main.js',
   },
   plugins: [
+    replace({
+      process: JSON.stringify({
+        env: {
+          isProd: production,
+          NODE_ENV: process.env.NODE_ENV
+        }
+      }),
+    }),
     svelte({
       dev: !production,
       css: css => {
