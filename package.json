@@ -3,7 +3,7 @@
   "svelte": "src/DevTools.svelte",
   "module": "index.mjs",
   "version": "0.0.1",
-  "description": "component",
+  "description": "dev tools for web apps ",
   "main": "index.js",
   "author": "Mila Frerichs <mila.frerichs@gmail.com>",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "build": "rollup -c",
     "autobuild": "rollup -c example/rollup.config.js -w",
     "start:dev": "sirv example/public --dev -p 1313",
-    "prepublishOnly": "npm run srcdoc && npm run build",
+    "prepublishOnly": "npm run build",
     "start": "run-p start:dev autobuild",
     "test": "jest",
     "test:watch": "npm run test -- --watch"
@@ -50,16 +50,12 @@
       "js",
       "svelte"
     ],
-    "setupFiles": [
-      "jest-canvas-mock"
-    ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
     ]
   },
   "files": [
     "src",
-    "scripts",
     "index.mjs",
     "index.js"
   ]
