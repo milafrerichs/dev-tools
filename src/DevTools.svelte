@@ -46,11 +46,39 @@
   .hidden {
     display: none;
   }
+  #dev-tools {
+    position: absolute;
+    background: black;
+    opacity: 0.4;
+    color: white;
+    width: 100%;
+    padding: 20px;
+    height: 40px;
+    width: 40px;
+    transition: all 0.3s;
+  }
+  #dev-tools:hover {
+    height: 300px;
+    width: 100%;
+    opacity: 0.9;
+  }
+  #dev-tools .tools {
+    display: none;
+
+  }
+  #dev-tools:hover .tools {
+    display: block;
+
+  }
+  .bottom {
+    bottom: 0;
+    left: 0;
+  }
 </style>
 {#if activated}
-  <div id="dev-tools">
-    <div on:click={handleToggle} class="toggle">🛠</div>
-    <div class="tools" class:hidden>
+  <div id="dev-tools" class="{position}">
+    <div class="toggle">🛠</div>
+    <div class="tools">
       {#each tools as tool}
         <h2>{tool.title}</h2>
         <svelte:component values={tool.values} callback={tool.callback} this={types[tool.type]}/>
