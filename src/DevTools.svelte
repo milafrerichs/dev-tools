@@ -1,10 +1,15 @@
 <script>
   import { onMount } from 'svelte';
   import Select from './Select.svelte';
+  import Input from './Input.svelte';
+  import Button from './Button.svelte';
+  import Checkbox from './Checkbox.svelte';
 
   export let position = 'bottom';
   export let tools = [];
   export let env = '';
+  export let submit = false;
+  export let submitCallback;
 
   let activated = false;
   function loadDevTools() {
@@ -26,10 +31,14 @@
   }
 
   let hidden = true;
-  let types = { 'select': Select }
+  let types = { 'select': Select, 'input': Input, 'button': Button, 'checkbox': Checkbox }
 
   function handleToggle() {
     hidden = !hidden;
+  }
+
+  function handleSubmit(event) {
+    submitCallback(event)
   }
 
   onMount(() => {
@@ -64,11 +73,9 @@
   }
   #dev-tools .tools {
     display: none;
-
   }
   #dev-tools:hover .tools {
-    display: block;
-
+    display: flex;
   }
   .bottom {
     bottom: 0;
@@ -78,11 +85,16 @@
 {#if activated}
   <div id="dev-tools" class="{position}">
     <div class="toggle">🛠</div>
-    <div class="tools">
-      {#each tools as tool}
-        <h2>{tool.title}</h2>
-        <svelte:component values={tool.values} callback={tool.callback} this={types[tool.type]}/>
-      {/each}
-    </div>
+    <form on:submit|preventDefault={handleSubmit}>
+      <div class="tools">
+        {#each tools as tool}
+          <h2>{tool.title}</h2>
+          <svelte:component values={tool.values} callback={tool.callback} this={types[tool.type]}/>
+        {/each}
+        {#if submit}
+          <input type="submit" value="Submit" />
+        {/if}
+      </div>
+    </form>
   </div>
 {/if}
