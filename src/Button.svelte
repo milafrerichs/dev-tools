@@ -13,4 +13,4 @@
   }
 
 </script>
-<button on:click={handleClick}>{values}</button>
+<button class="text-black p-2 bg-white" on:click={handleClick}>{values}</button>

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   export let callback;
-  export let values= '';
+  export const values= '';
   let value;
 
   function handleKeydown(event) {
@@ -13,4 +13,4 @@
   }
 
 </script>
-<input bind:value={value} on:keydown={handleKeydown}>
+<input class="text-black" bind:value={value} on:keydown={handleKeydown}>
