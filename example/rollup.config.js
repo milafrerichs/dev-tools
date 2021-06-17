@@ -4,6 +4,7 @@ import html from 'rollup-plugin-html';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import sveltePreprocess from "svelte-preprocess";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -26,6 +27,10 @@ export default {
     }),
     svelte({
       dev: !production,
+      preprocess: sveltePreprocess({
+        sourceMap: !production,
+        postcss: true,
+      }),
       css: css => {
         css.write('example/public/bundle.css');
       }

@@ -5,13 +5,13 @@
   import Button from './Button.svelte';
   import Checkbox from './Checkbox.svelte';
 
-  export let position = 'bottom';
+  export const position = 'bottom';
   export let tools = [];
   export let env = '';
   export let submit = false;
   export let submitCallback;
 
-  let activated = false;
+  export let activated = false;
   function loadDevTools() {
     // this allows you to explicitly disable it in development for example
     const explicitlyDisabled =
@@ -45,54 +45,26 @@
     loadDevTools();
   })
 </script>
-<style>
-  .toggle  {
-    cursor: pointer;
-  }
-  .tools {
-
-  }
-  .hidden {
-    display: none;
-  }
-  #dev-tools {
-    position: absolute;
-    background: black;
-    opacity: 0.4;
-    color: white;
-    width: 100%;
-    padding: 20px;
-    height: 40px;
-    width: 40px;
-    transition: all 0.3s;
-  }
-  #dev-tools:hover {
-    height: 300px;
-    width: 100%;
-    opacity: 0.9;
-  }
-  #dev-tools .tools {
-    display: none;
-  }
-  #dev-tools:hover .tools {
-    display: flex;
-  }
-  .bottom {
-    bottom: 0;
-    left: 0;
-  }
+<style global lang="postcss">
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
 </style>
 {#if activated}
-  <div id="dev-tools" class="{position}">
-    <div class="toggle">🛠</div>
-    <form on:submit|preventDefault={handleSubmit}>
-      <div class="tools">
+  <div id="dev-tools" class="cursor-pointer absolute bottom-0 left-0 bg-black text-white h-10 w-10 p-2 opacity-40 transition-all duration-300 group hover:w-full hover:opacity-90 hover:h-60 hover:p-8">
+    <div class="cursor-pointer group-hover:hidden">🛠</div>
+    <form on:submit|preventDefault={handleSubmit} class="w-screen">
+      <div class="grid grid-flow-row grid-cols-4 gap-4 hidden group-hover:grid">
         {#each tools as tool}
-          <h2>{tool.title}</h2>
-          <svelte:component values={tool.values} callback={tool.callback} this={types[tool.type]}/>
+          <div class="">
+            <h2>{tool.title}</h2>
+            <svelte:component values={tool.values} callback={tool.callback} this={types[tool.type]}/>
+          </div>
         {/each}
         {#if submit}
-          <input type="submit" value="Submit" />
+          <div class="">
+            <input class="text-black p-2" type="submit" value="Submit" />
+          </div>
         {/if}
       </div>
     </form>

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   export let callback;
-  export let values= [
+  export const values = [
     { title: 'Youth Reporter', value: '' },
   ]
   let selected = ''
@@ -16,7 +16,7 @@
   }
 
 </script>
-<select bind:value={selected} on:change="{handleChange}">
+<select class="text-black" bind:value={selected} on:blur="{handleChange}">
   <option value=''>Please select</option>
   {#each values as value }
     <option value={value.value}>

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   export let callback;
-  export let values = ''
+  export const values = ''
   let value = false;
 
   function handleChange() {
@@ -10,4 +10,4 @@
   }
 
 </script>
-<input type="checkbox" bind:checked={value} on:change="{handleChange}"/>
+<input class="text-black" type="checkbox" bind:checked={value} on:change="{handleChange}"/>
