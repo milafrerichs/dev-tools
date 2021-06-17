@@ -2,7 +2,7 @@
   "name": "svelte-dev-tools",
   "svelte": "src/DevTools.svelte",
   "module": "index.mjs",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "dev tools for web apps ",
   "main": "index.js",
   "author": "Mila Frerichs <mila.frerichs@gmail.com>",
